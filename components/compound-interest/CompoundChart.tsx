@@ -48,7 +48,7 @@ export default function CompoundChart({ data }: { data: YearData[] }) {
         position: 'top' as const,
         rtl: true,
         labels: {
-          font: { family: 'Rubik', size: 12 },
+          font: { family: 'Assistant', size: 12 },
           color: '#1e293b',
         },
       },
@@ -63,7 +63,7 @@ export default function CompoundChart({ data }: { data: YearData[] }) {
       x: {
         stacked: true,
         ticks: {
-          font: { family: 'Rubik', size: 11 },
+          font: { family: 'Assistant', size: 11 },
           color: '#64748b',
           maxRotation: 45,
         },
@@ -72,7 +72,7 @@ export default function CompoundChart({ data }: { data: YearData[] }) {
       y: {
         stacked: true,
         ticks: {
-          font: { family: 'Rubik', size: 11 },
+          font: { family: 'Assistant', size: 11 },
           color: '#64748b',
           callback: (val: number | string) =>
             new Intl.NumberFormat('he-IL', { notation: 'compact', compactDisplay: 'short' }).format(Number(val)) + ' ₪',

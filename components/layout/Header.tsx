@@ -8,7 +8,19 @@ export default function Header() {
 
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-      <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+
+        {/* Right: Paamonim logo */}
+        <Link href="/" className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www.paamonim.org/wp-content/uploads/2024/10/logo-pamonim-english-1.png"
+            alt="פעמונים"
+            className="h-10 w-auto object-contain"
+          />
+        </Link>
+
+        {/* Center: nav links */}
         <nav className="flex gap-2">
           <Link
             href="/compound-interest"
@@ -31,9 +43,12 @@ export default function Header() {
             תכנון אירוע
           </Link>
         </nav>
-        <div className="text-xl font-bold text-teal-700 tracking-tight">
-          פעמונים
-        </div>
+
+        {/* Left: Castro Lab small label */}
+        <span className="text-xs font-medium text-slate-400 tracking-wide">
+          Castro Lab
+        </span>
+
       </div>
     </header>
   );
