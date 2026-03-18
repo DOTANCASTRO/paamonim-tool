@@ -79,11 +79,9 @@ export default function CompoundInterestCalculator() {
         </div>
       </div>
 
-      {parseFloat(rate) > 3.5 && (
-        <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm text-slate-600 leading-relaxed">
-          ⚠️ <strong>שים לב:</strong> ככל שהריבית גבוהה יותר, כך הסיכון בדרך כלל גבוה יותר. ריבית של {rate}% אינה מובטחת — היא מייצגת תשואה אפשרית בהשקעות מסוימות. כדאי להתאים את ההשקעה לפרופיל הסיכון האישי שלך, לאופק הזמן ולמטרות הספציפיות שלך. במידת הצורך — התייעץ עם יועץ פיננסי.
-        </div>
-      )}
+      <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm text-slate-600 leading-relaxed">
+        ⚠️ <strong>שים לב:</strong> ככל שהריבית גבוהה יותר, כך הסיכון בדרך כלל גבוה יותר. הריבית במחשבון אינה מובטחת — היא מייצגת תשואה אפשרית בהשקעות מסוימות. כדאי להתאים את ההשקעה לפרופיל הסיכון האישי שלך, לאופק הזמן ולמטרות הספציפיות שלך. במידת הצורך — התייעץ עם יועץ פיננסי.
+      </div>
 
       {result && (
         <>
