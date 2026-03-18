@@ -81,22 +81,27 @@ export default function CompoundInterestCalculator() {
 
       {result && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <ResultCard
+              label="סכום התחלתי"
+              value={formatCurrency(parseFloat(principal) || 0)}
+              color="slate"
+            />
+            <ResultCard
+              label="סך הפקדות חודשיות"
+              value={formatCurrency(result.totalContributions - (parseFloat(principal) || 0))}
+              color="slate"
+            />
+            <ResultCard
+              label="רווח מריבית"
+              value={formatCurrency(result.totalInterest)}
+              subtitle={`${formatPercent(interestPercent)} מסך החיסכון`}
+              color="amber"
+            />
             <ResultCard
               label="סך הכל בסוף התקופה"
               value={formatCurrency(result.totalValue)}
               color="teal"
-            />
-            <ResultCard
-              label="סך ההפקדות שלך"
-              value={formatCurrency(result.totalContributions)}
-              color="slate"
-            />
-            <ResultCard
-              label="רווח מריבית דריבית"
-              value={formatCurrency(result.totalInterest)}
-              subtitle={`${formatPercent(interestPercent)} מסך החיסכון`}
-              color="amber"
             />
           </div>
 
