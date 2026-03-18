@@ -14,7 +14,7 @@ export default function Header() {
         <Link href="/" className="flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://www.paamonim.org/wp-content/uploads/2022/05/Group-49.png"
+            src="/paamonim-logo.png"
             alt="פעמונים"
             className="h-10 w-auto object-contain"
           />
