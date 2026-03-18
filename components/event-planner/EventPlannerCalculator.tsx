@@ -159,6 +159,22 @@ export default function EventPlannerCalculator() {
           )}
         </>
       )}
+
+      {/* Link to compound interest calculator */}
+      <div className="bg-teal-50 border border-teal-200 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex flex-col gap-1">
+          <p className="text-sm font-semibold text-teal-800">רוצה להגיע ליעד מהר יותר?</p>
+          <p className="text-sm text-teal-700 leading-relaxed">
+            אם תשקיע את הסכום החודשי בחשבון חיסכון או השקעה, הריבית תעזור לך להגיע ליעד מוקדם יותר — הכסף עובד בשבילך בזמן שאתה חוסך.
+          </p>
+        </div>
+        <a
+          href="/compound-interest"
+          className="shrink-0 bg-teal-700 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-teal-800 transition-colors text-center"
+        >
+          מחשבון ריבית דריבית ←
+        </a>
+      </div>
     </div>
   );
 }
