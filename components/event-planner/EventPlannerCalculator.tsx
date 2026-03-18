@@ -169,7 +169,7 @@ export default function EventPlannerCalculator() {
           </p>
         </div>
         <a
-          href="/compound-interest"
+          href={`/compound-interest${targetAmount ? `?initial=${targetAmount}` : ''}`}
           className="shrink-0 bg-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-blue-800 transition-colors text-center"
         >
           מחשבון ריבית דריבית ←

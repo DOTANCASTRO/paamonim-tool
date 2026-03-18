@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import NumberInput from '@/components/shared/NumberInput';
 import RateSelector from '@/components/shared/RateSelector';
 import ResultCard from '@/components/shared/ResultCard';
@@ -14,8 +15,10 @@ const INVESTMENT_PRESETS = [
   { label: 'גבוהה', value: 10 },
 ];
 
-export default function CompoundInterestCalculator() {
-  const [principal, setPrincipal] = useState('10000');
+function CompoundInterestForm() {
+  const searchParams = useSearchParams();
+  const initialFromUrl = searchParams.get('initial') || '10000';
+  const [principal, setPrincipal] = useState(initialFromUrl);
   const [years, setYears] = useState('10');
   const [monthly, setMonthly] = useState('500');
   const [rate, setRate] = useState('3.5');
@@ -123,5 +126,13 @@ export default function CompoundInterestCalculator() {
         </>
       )}
     </div>
+  );
+}
+
+export default function CompoundInterestCalculator() {
+  return (
+    <Suspense fallback={<div />}>
+      <CompoundInterestForm />
+    </Suspense>
   );
 }
