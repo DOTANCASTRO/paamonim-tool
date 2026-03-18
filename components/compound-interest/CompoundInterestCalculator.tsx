@@ -18,8 +18,10 @@ const INVESTMENT_PRESETS = [
 function CompoundInterestForm() {
   const searchParams = useSearchParams();
   const initialFromUrl = searchParams.get('initial') || '10000';
+  const monthsFromUrl = searchParams.get('months');
+  const yearsFromUrl = monthsFromUrl ? String(Math.max(1, Math.round(parseInt(monthsFromUrl) / 12))) : '10';
   const [principal, setPrincipal] = useState(initialFromUrl);
-  const [years, setYears] = useState('10');
+  const [years, setYears] = useState(yearsFromUrl);
   const [monthly, setMonthly] = useState('500');
   const [rate, setRate] = useState('3.5');
 
