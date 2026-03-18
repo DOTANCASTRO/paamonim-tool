@@ -32,7 +32,7 @@ export default function Header() {
           </Link>
         </nav>
         <div className="text-xl font-bold text-teal-700 tracking-tight">
-          Castro Lab
+          פעמונים
         </div>
       </div>
     </header>

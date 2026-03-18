@@ -1,7 +1,7 @@
 'use client';
 
 interface Preset {
-  label: string;
+  label?: string;
   value: number;
 }
 
@@ -47,7 +47,7 @@ export default function RateSelector({ value, onChange, presets, helper, tooltip
                 : 'bg-white text-slate-600 border-slate-200 hover:border-teal-400'
             }`}
           >
-            {p.label} {p.value}%
+            {p.label ? `${p.label} ` : ''}{p.value}%
           </button>
         ))}
       </div>

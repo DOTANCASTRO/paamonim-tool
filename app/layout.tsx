@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 
 export const metadata: Metadata = {
-  title: "Castro Lab — מחשבונים פיננסיים",
+  title: "פעמונים — מחשבונים פיננסיים",
   description: "כלים פשוטים לתכנון פיננסי חכם",
 };
 

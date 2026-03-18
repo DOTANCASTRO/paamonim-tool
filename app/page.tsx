@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-8 py-8">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-slate-800 mb-2">ברוכים הבאים ל-Castro Lab</h1>
+        <h1 className="text-3xl font-bold text-slate-800 mb-2">ברוכים הבאים לפעמונים</h1>
         <p className="text-slate-500">כלים פשוטים לתכנון פיננסי חכם</p>
       </div>
 

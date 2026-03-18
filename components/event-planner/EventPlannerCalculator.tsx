@@ -13,9 +13,9 @@ import {
 } from '@/lib/calculations';
 
 const SAVINGS_PRESETS = [
-  { label: 'נמוכה', value: 1.5 },
-  { label: 'בינונית', value: 3 },
-  { label: 'גבוהה', value: 4.5 },
+  { value: 1.5 },
+  { value: 3 },
+  { value: 4.5 },
 ];
 
 const EVENT_TYPES = [
