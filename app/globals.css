@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&display=swap');
-
 :root {
   --primary: #0f766e;
   --primary-light: #14b8a6;
@@ -14,10 +12,6 @@
   --text-muted: #64748b;
   --border: #e2e8f0;
   --error: #ef4444;
-}
-
-* {
-  font-family: 'Assistant', sans-serif;
 }
 
 body {
