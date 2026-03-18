@@ -18,7 +18,7 @@ export default function CompoundInterestCalculator() {
   const [principal, setPrincipal] = useState('10000');
   const [years, setYears] = useState('10');
   const [monthly, setMonthly] = useState('500');
-  const [rate, setRate] = useState('6');
+  const [rate, setRate] = useState('3.5');
 
   const result = useMemo(() => {
     const p = parseFloat(principal) || 0;
