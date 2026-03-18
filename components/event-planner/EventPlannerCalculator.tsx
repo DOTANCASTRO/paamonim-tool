@@ -54,7 +54,7 @@ export default function EventPlannerCalculator() {
             value={eventName}
             onChange={(e) => setEventName(e.target.value)}
             placeholder="לדוגמה: חתונה, רכב, טיול..."
-            className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
+            className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
         </div>
 
@@ -63,7 +63,7 @@ export default function EventPlannerCalculator() {
           <button
             onClick={() => setMode('A')}
             className={`flex-1 py-3 px-4 text-sm font-medium transition-colors ${
-              mode === 'A' ? 'bg-teal-700 text-white' : 'bg-white text-slate-600 hover:bg-slate-50'
+              mode === 'A' ? 'bg-blue-700 text-white' : 'bg-white text-slate-600 hover:bg-slate-50'
             }`}
           >
             אני יודע/ת כמה זה עולה — תגיד לי כמה לחסוך בחודש
@@ -71,7 +71,7 @@ export default function EventPlannerCalculator() {
           <button
             onClick={() => setMode('B')}
             className={`flex-1 py-3 px-4 text-sm font-medium transition-colors border-r border-slate-200 ${
-              mode === 'B' ? 'bg-teal-700 text-white' : 'bg-white text-slate-600 hover:bg-slate-50'
+              mode === 'B' ? 'bg-blue-700 text-white' : 'bg-white text-slate-600 hover:bg-slate-50'
             }`}
           >
             אני יודע/ת כמה אני יכול/ה לחסוך — תגיד לי מתי אגיע ליעד
@@ -117,7 +117,7 @@ export default function EventPlannerCalculator() {
             <ResultCard
               label="חיסכון חודשי נדרש"
               value={formatCurrency(resultA.monthlySavings)}
-              color="teal"
+              color="blue"
             />
             <ResultCard
               label="סך החיסכון הנדרש"
@@ -125,7 +125,7 @@ export default function EventPlannerCalculator() {
               color="slate"
             />
           </div>
-          <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 text-sm text-amber-800 leading-relaxed">
+          <div className="bg-orange-50 border border-orange-100 rounded-xl p-4 text-sm text-orange-800 leading-relaxed">
             💡 אם תחסוך <strong>{formatCurrency(resultA.monthlySavings)}</strong> בחודש, תגיע ל{displayName} שלך בעוד {months} חודשים.
           </div>
         </>
@@ -139,7 +139,7 @@ export default function EventPlannerCalculator() {
               label="תגיע ליעד בעוד"
               value={`${resultB.months} חודשים`}
               subtitle={`בערך ב-${formatDate(resultB.projectedDate)}`}
-              color="teal"
+              color="blue"
             />
             <ResultCard
               label="סך החיסכון הנדרש"
@@ -152,7 +152,7 @@ export default function EventPlannerCalculator() {
               ⚠️ בקצב הזה ייקח יותר מ-30 שנה להגיע ליעד. שווה לשקול להגדיל את הסכום החודשי.
             </div>
           ) : (
-            <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 text-sm text-amber-800 leading-relaxed">
+            <div className="bg-orange-50 border border-orange-100 rounded-xl p-4 text-sm text-orange-800 leading-relaxed">
               💡 אם תחסוך <strong>{formatCurrency(parseFloat(monthlySavings))}</strong> בחודש, תגיע ל{displayName} שלך בעוד{' '}
               <strong>{resultB.months} חודשים</strong> (בערך {formatDate(resultB.projectedDate)}).
             </div>
@@ -161,16 +161,16 @@ export default function EventPlannerCalculator() {
       )}
 
       {/* Link to compound interest calculator */}
-      <div className="bg-teal-50 border border-teal-200 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex flex-col gap-1">
-          <p className="text-sm font-semibold text-teal-800">רוצה להגיע ליעד מהר יותר?</p>
-          <p className="text-sm text-teal-700 leading-relaxed">
+          <p className="text-sm font-semibold text-blue-800">רוצה להגיע ליעד מהר יותר?</p>
+          <p className="text-sm text-blue-700 leading-relaxed">
             אם תשקיע את הסכום החודשי בחשבון חיסכון או השקעה, הריבית תעזור לך להגיע ליעד מוקדם יותר — הכסף עובד בשבילך בזמן שאתה חוסך.
           </p>
         </div>
         <a
           href="/compound-interest"
-          className="shrink-0 bg-teal-700 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-teal-800 transition-colors text-center"
+          className="shrink-0 bg-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-blue-800 transition-colors text-center"
         >
           מחשבון ריבית דריבית ←
         </a>

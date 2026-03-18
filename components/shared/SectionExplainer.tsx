@@ -4,7 +4,7 @@ interface SectionExplainerProps {
 
 export default function SectionExplainer({ children }: SectionExplainerProps) {
   return (
-    <div className="bg-teal-50 border border-teal-100 rounded-xl p-4 text-sm text-teal-800 leading-relaxed">
+    <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm text-blue-800 leading-relaxed">
       {children}
     </div>
   );

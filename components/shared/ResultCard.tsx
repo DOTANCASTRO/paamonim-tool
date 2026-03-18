@@ -2,19 +2,19 @@ interface ResultCardProps {
   label: string;
   value: string;
   subtitle?: string;
-  color?: 'teal' | 'amber' | 'slate';
+  color?: 'blue' | 'orange' | 'slate';
 }
 
 export default function ResultCard({ label, value, subtitle, color = 'slate' }: ResultCardProps) {
   const accent = {
-    teal: 'border-t-teal-600',
-    amber: 'border-t-amber-500',
+    blue: 'border-t-blue-700',
+    orange: 'border-t-orange-500',
     slate: 'border-t-slate-400',
   }[color];
 
   const textColor = {
-    teal: 'text-teal-700',
-    amber: 'text-amber-600',
+    blue: 'text-blue-700',
+    orange: 'text-orange-500',
     slate: 'text-slate-700',
   }[color];
 

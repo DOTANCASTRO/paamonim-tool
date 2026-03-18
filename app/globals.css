@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --primary: #0f766e;
-  --primary-light: #14b8a6;
-  --accent: #f59e0b;
+  --primary: #1d4ed8;
+  --primary-light: #3b82f6;
+  --accent: #f97316;
   --bg: #f8fafc;
   --surface: #ffffff;
   --text: #1e293b;

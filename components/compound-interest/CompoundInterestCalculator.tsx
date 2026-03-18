@@ -100,16 +100,16 @@ export default function CompoundInterestCalculator() {
               label="רווח מריבית"
               value={formatCurrency(result.totalInterest)}
               subtitle={`${formatPercent(interestPercent)} מסך החיסכון`}
-              color="amber"
+              color="orange"
             />
             <ResultCard
               label="סך הכל בסוף התקופה"
               value={formatCurrency(result.totalValue)}
-              color="teal"
+              color="blue"
             />
           </div>
 
-          <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 text-sm text-amber-800 leading-relaxed">
+          <div className="bg-orange-50 border border-orange-100 rounded-xl p-4 text-sm text-orange-800 leading-relaxed">
             💡 מתוך סך החיסכון שלך, <strong>{formatPercent(interestPercent)}</strong> הגיע מריבית —
             {interestPercent > 50
               ? ' כלומר יותר ממחצית הכסף שלך נוצר בלי שהפקדת כלום. זה הכוח של זמן + ריבית.'

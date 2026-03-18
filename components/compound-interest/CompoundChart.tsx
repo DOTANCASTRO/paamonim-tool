@@ -28,13 +28,13 @@ export default function CompoundChart({ data }: { data: YearData[] }) {
       {
         label: 'הפקדות',
         data: data.map((d) => Math.round(d.contributions)),
-        backgroundColor: '#0d9488',
+        backgroundColor: '#1d4ed8',
         borderRadius: 4,
       },
       {
         label: 'ריבית',
         data: data.map((d) => Math.round(d.interest)),
-        backgroundColor: '#f59e0b',
+        backgroundColor: '#f97316',
         borderRadius: 4,
       },
     ],

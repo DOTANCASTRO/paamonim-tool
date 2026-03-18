@@ -26,7 +26,7 @@ export default function Header() {
             href="/compound-interest"
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               pathname === '/compound-interest'
-                ? 'bg-teal-700 text-white'
+                ? 'bg-blue-700 text-white'
                 : 'text-slate-600 hover:bg-slate-100'
             }`}
           >
@@ -36,7 +36,7 @@ export default function Header() {
             href="/event-planner"
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               pathname === '/event-planner'
-                ? 'bg-teal-700 text-white'
+                ? 'bg-blue-700 text-white'
                 : 'text-slate-600 hover:bg-slate-100'
             }`}
           >

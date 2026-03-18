@@ -43,7 +43,7 @@ export default function NumberInput({
           onChange={handleChange}
           placeholder={placeholder}
           min={min}
-          className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+          className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
         />
         {suffix && (
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
