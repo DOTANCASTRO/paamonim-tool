@@ -10,9 +10,9 @@ import CompoundChart from './CompoundChart';
 import { calcCompoundInterest, formatCurrency, formatPercent } from '@/lib/calculations';
 
 const INVESTMENT_PRESETS = [
-  { label: 'נמוכה', value: 3.5 },
-  { label: 'בינונית', value: 6 },
-  { label: 'גבוהה', value: 10 },
+  { value: 3.5 },
+  { value: 5 },
+  { value: 8 },
 ];
 
 function CompoundInterestForm() {
