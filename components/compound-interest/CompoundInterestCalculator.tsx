@@ -25,9 +25,10 @@ interface CompoundInterestFormProps {
   defaultMonthly?: string;
   hidePresets?: boolean;
   syncMonthly?: string;
+  syncYears?: string;
 }
 
-function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly, hidePresets, syncMonthly }: CompoundInterestFormProps = {}) {
+function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly, hidePresets, syncMonthly, syncYears }: CompoundInterestFormProps = {}) {
   const searchParams = useSearchParams();
   const initialFromUrl = defaultPrincipal ?? searchParams.get('initial') ?? '500';
   const monthsFromUrl = searchParams.get('months');
@@ -41,6 +42,10 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly, 
   useEffect(() => {
     if (syncMonthly !== undefined) setMonthly(syncMonthly);
   }, [syncMonthly]);
+
+  useEffect(() => {
+    if (syncYears !== undefined) setYears(syncYears);
+  }, [syncYears]);
 
   const result = useMemo(() => {
     const p = parseFloat(principal) || 0;
