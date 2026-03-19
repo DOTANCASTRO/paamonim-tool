@@ -67,22 +67,25 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }
             suffix="₪"
             helper="הסכום שאיתו אתה מתחיל את החיסכון"
           />
-          <div className="flex flex-col gap-2">
-            <NumberInput
-              label="מספר שנות ההשקעה"
-              value={years}
-              onChange={setYears}
-              placeholder="לדוגמה: 10"
-              suffix="שנים"
-              helper="לכמה שנים אתה רוצה לחסוך?"
-              min={1}
-            />
-            <div className="flex gap-2">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-slate-700">מספר שנות ההשקעה</label>
+            <div className="flex gap-2 items-stretch">
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  inputMode="decimal"
+                  value={years}
+                  onChange={(e) => { if (e.target.value === '' || /^\d*$/.test(e.target.value)) setYears(e.target.value); }}
+                  placeholder="לדוגמה: 10"
+                  className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">שנים</span>
+              </div>
               {YEARS_PRESETS.map((preset) => (
                 <button
                   key={preset}
                   onClick={() => setYears(String(preset))}
-                  className={`flex-1 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
+                  className={`px-3 text-xs font-medium rounded-lg border transition-colors whitespace-nowrap ${
                     years === String(preset)
                       ? 'bg-blue-700 text-white border-blue-700'
                       : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
@@ -92,23 +95,27 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }
                 </button>
               ))}
             </div>
+            <p className="text-xs text-slate-400">לכמה שנים אתה רוצה לחסוך?</p>
           </div>
-          <div className="flex flex-col gap-2">
-            <NumberInput
-              label="הפקדה חודשית"
-              value={monthly}
-              onChange={setMonthly}
-              placeholder="0"
-              suffix="₪"
-              helper="כמה אתה מוסיף לחיסכון כל חודש"
-              optional
-            />
-            <div className="flex gap-2">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-slate-700">הפקדה חודשית <span className="text-slate-400 font-normal mr-1">(אופציונלי)</span></label>
+            <div className="flex gap-2 items-stretch">
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  inputMode="decimal"
+                  value={monthly}
+                  onChange={(e) => { if (e.target.value === '' || /^\d*\.?\d*$/.test(e.target.value)) setMonthly(e.target.value); }}
+                  placeholder="0"
+                  className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">₪</span>
+              </div>
               {MONTHLY_PRESETS.map((preset) => (
                 <button
                   key={preset}
                   onClick={() => setMonthly(String(preset))}
-                  className={`flex-1 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
+                  className={`px-3 text-xs font-medium rounded-lg border transition-colors whitespace-nowrap ${
                     monthly === String(preset)
                       ? 'bg-blue-700 text-white border-blue-700'
                       : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
@@ -118,6 +125,7 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }
                 </button>
               ))}
             </div>
+            <p className="text-xs text-slate-400">כמה אתה מוסיף לחיסכון כל חודש</p>
           </div>
           <RateSelector
             value={rate}
