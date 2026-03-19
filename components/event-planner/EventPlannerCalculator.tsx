@@ -91,36 +91,14 @@ export default function EventPlannerCalculator() {
             helper="כמה כסף תצטרך לאירוע?"
           />
           {mode === 'A' ? (
-            <div className="flex flex-col gap-1">
-              <label className="text-sm font-semibold text-slate-700">בעוד כמה שנים האירוע?</label>
-              <div className="flex gap-2 items-stretch">
-                <div className="relative flex-1">
-                  <input
-                    type="text"
-                    inputMode="decimal"
-                    value={years}
-                    onChange={(e) => { if (e.target.value === '' || /^\d*$/.test(e.target.value)) setYears(e.target.value); }}
-                    placeholder="לדוגמה: 5"
-                    className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                  />
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">שנים</span>
-                </div>
-                {[1, 3, 5].map((preset) => (
-                  <button
-                    key={preset}
-                    onClick={() => setYears(String(preset))}
-                    className={`px-3 text-xs font-medium rounded-lg border transition-colors whitespace-nowrap ${
-                      years === String(preset)
-                        ? 'bg-blue-700 text-white border-blue-700'
-                        : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                    }`}
-                  >
-                    {preset} שנים
-                  </button>
-                ))}
-              </div>
-              <p className="text-xs text-slate-400">כמה זמן יש לך לחסוך?</p>
-            </div>
+            <NumberInput
+              label="בעוד כמה שנים האירוע?"
+              value={years}
+              onChange={setYears}
+              placeholder="לדוגמה: 5"
+              suffix="שנים"
+              helper="כמה זמן יש לך לחסוך?"
+            />
           ) : (
             <NumberInput
               label="כמה אתה יכול/ה לחסוך בחודש?"
