@@ -20,9 +20,10 @@ function CompoundInterestForm() {
   const initialFromUrl = searchParams.get('initial') || '10000';
   const monthsFromUrl = searchParams.get('months');
   const yearsFromUrl = monthsFromUrl ? String(Math.max(1, Math.round(parseInt(monthsFromUrl) / 12))) : '10';
+  const monthlyFromUrl = searchParams.get('monthly') || '500';
   const [principal, setPrincipal] = useState(initialFromUrl);
   const [years, setYears] = useState(yearsFromUrl);
-  const [monthly, setMonthly] = useState('500');
+  const [monthly, setMonthly] = useState(monthlyFromUrl);
   const [rate, setRate] = useState('3.5');
 
   const result = useMemo(() => {

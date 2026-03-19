@@ -171,9 +171,11 @@ export default function EventPlannerCalculator() {
         <a
           href={(() => {
             const params = new URLSearchParams();
-            if (targetAmount) params.set('initial', targetAmount);
+            params.set('initial', '0');
             const m = mode === 'A' ? parseInt(months) : resultB?.months;
             if (m) params.set('months', String(m));
+            const monthly = mode === 'A' ? resultA?.monthlySavings : parseFloat(monthlySavings);
+            if (monthly) params.set('monthly', String(Math.round(monthly)));
             return `/compound-interest?${params.toString()}`;
           })()}
           className="shrink-0 bg-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-blue-800 transition-colors text-center"
