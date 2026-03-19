@@ -15,7 +15,8 @@ const INVESTMENT_PRESETS = [
   { value: 8 },
 ];
 
-const MONTHLY_PRESETS = [100, 300, 500];
+const MONTHLY_PRESETS = [1000, 3000, 5000];
+const YEARS_PRESETS = [5, 10, 20];
 
 interface CompoundInterestFormProps {
   defaultPrincipal?: string;
@@ -27,8 +28,8 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }
   const searchParams = useSearchParams();
   const initialFromUrl = defaultPrincipal ?? searchParams.get('initial') ?? '1000';
   const monthsFromUrl = searchParams.get('months');
-  const yearsFromUrl = defaultYears ?? (monthsFromUrl ? String(Math.max(1, Math.round(parseInt(monthsFromUrl) / 12))) : '10');
-  const monthlyFromUrl = defaultMonthly ?? searchParams.get('monthly') ?? '50';
+  const yearsFromUrl = defaultYears ?? (monthsFromUrl ? String(Math.max(1, Math.round(parseInt(monthsFromUrl) / 12))) : '5');
+  const monthlyFromUrl = defaultMonthly ?? searchParams.get('monthly') ?? '500';
   const [principal, setPrincipal] = useState(initialFromUrl);
   const [years, setYears] = useState(yearsFromUrl);
   const [monthly, setMonthly] = useState(monthlyFromUrl);
@@ -66,15 +67,32 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }
             suffix="₪"
             helper="הסכום שאיתו אתה מתחיל את החיסכון"
           />
-          <NumberInput
-            label="מספר שנות ההשקעה"
-            value={years}
-            onChange={setYears}
-            placeholder="לדוגמה: 10"
-            suffix="שנים"
-            helper="לכמה שנים אתה רוצה לחסוך?"
-            min={1}
-          />
+          <div className="flex flex-col gap-2">
+            <NumberInput
+              label="מספר שנות ההשקעה"
+              value={years}
+              onChange={setYears}
+              placeholder="לדוגמה: 10"
+              suffix="שנים"
+              helper="לכמה שנים אתה רוצה לחסוך?"
+              min={1}
+            />
+            <div className="flex gap-2">
+              {YEARS_PRESETS.map((preset) => (
+                <button
+                  key={preset}
+                  onClick={() => setYears(String(preset))}
+                  className={`flex-1 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
+                    years === String(preset)
+                      ? 'bg-blue-700 text-white border-blue-700'
+                      : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  {preset} שנים
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="flex flex-col gap-2">
             <NumberInput
               label="הפקדה חודשית"
@@ -96,7 +114,7 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }
                       : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                   }`}
                 >
-                  {preset} ₪
+                  {preset.toLocaleString()} ₪
                 </button>
               ))}
             </div>
