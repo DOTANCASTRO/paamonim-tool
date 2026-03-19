@@ -15,6 +15,7 @@ const INVESTMENT_PRESETS = [
   { value: 8 },
 ];
 
+const PRINCIPAL_PRESETS = [1000, 3000, 5000];
 const MONTHLY_PRESETS = [1000, 3000, 5000];
 const YEARS_PRESETS = [5, 10, 20];
 
@@ -28,7 +29,7 @@ interface CompoundInterestFormProps {
 
 function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly, hidePresets, syncMonthly }: CompoundInterestFormProps = {}) {
   const searchParams = useSearchParams();
-  const initialFromUrl = defaultPrincipal ?? searchParams.get('initial') ?? '1000';
+  const initialFromUrl = defaultPrincipal ?? searchParams.get('initial') ?? '500';
   const monthsFromUrl = searchParams.get('months');
   const yearsFromUrl = defaultYears ?? (monthsFromUrl ? String(Math.max(1, Math.round(parseInt(monthsFromUrl) / 12))) : '5');
   const monthlyFromUrl = defaultMonthly ?? searchParams.get('monthly') ?? '500';
@@ -65,14 +66,36 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly, 
       <div className="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col gap-5">
         <h2 className="text-lg font-bold text-slate-800">הכנס את הנתונים שלך</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <NumberInput
-            label="סכום התחלתי"
-            value={principal}
-            onChange={setPrincipal}
-            placeholder="לדוגמה: 10,000"
-            suffix="₪"
-            helper="הסכום שאיתו אתה מתחיל את החיסכון"
-          />
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-semibold text-slate-700">סכום התחלתי</label>
+            <div className="flex gap-2 items-stretch">
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  inputMode="decimal"
+                  value={principal}
+                  onChange={(e) => { if (e.target.value === '' || /^\d*\.?\d*$/.test(e.target.value)) setPrincipal(e.target.value); }}
+                  placeholder="לדוגמה: 500"
+                  className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">₪</span>
+              </div>
+              {PRINCIPAL_PRESETS.map((preset) => (
+                <button
+                  key={preset}
+                  onClick={() => setPrincipal(String(preset))}
+                  className={`px-3 text-xs font-medium rounded-lg border transition-colors whitespace-nowrap ${
+                    principal === String(preset)
+                      ? 'bg-blue-700 text-white border-blue-700'
+                      : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  {preset.toLocaleString()} ₪
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-slate-400">הסכום שאיתו אתה מתחיל את החיסכון</p>
+          </div>
           <div className="flex flex-col gap-1">
             <label className="text-sm font-semibold text-slate-700">מספר שנות ההשקעה</label>
             <div className="flex gap-2 items-stretch">
