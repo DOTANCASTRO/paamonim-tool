@@ -15,12 +15,20 @@ const INVESTMENT_PRESETS = [
   { value: 8 },
 ];
 
-function CompoundInterestForm() {
+const MONTHLY_PRESETS = [100, 300, 500];
+
+interface CompoundInterestFormProps {
+  defaultPrincipal?: string;
+  defaultYears?: string;
+  defaultMonthly?: string;
+}
+
+function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }: CompoundInterestFormProps = {}) {
   const searchParams = useSearchParams();
-  const initialFromUrl = searchParams.get('initial') || '10000';
+  const initialFromUrl = defaultPrincipal ?? searchParams.get('initial') ?? '1000';
   const monthsFromUrl = searchParams.get('months');
-  const yearsFromUrl = monthsFromUrl ? String(Math.max(1, Math.round(parseInt(monthsFromUrl) / 12))) : '10';
-  const monthlyFromUrl = searchParams.get('monthly') || '500';
+  const yearsFromUrl = defaultYears ?? (monthsFromUrl ? String(Math.max(1, Math.round(parseInt(monthsFromUrl) / 12))) : '10');
+  const monthlyFromUrl = defaultMonthly ?? searchParams.get('monthly') ?? '50';
   const [principal, setPrincipal] = useState(initialFromUrl);
   const [years, setYears] = useState(yearsFromUrl);
   const [monthly, setMonthly] = useState(monthlyFromUrl);
@@ -67,15 +75,32 @@ function CompoundInterestForm() {
             helper="לכמה שנים אתה רוצה לחסוך?"
             min={1}
           />
-          <NumberInput
-            label="הפקדה חודשית"
-            value={monthly}
-            onChange={setMonthly}
-            placeholder="0"
-            suffix="₪"
-            helper="כמה אתה מוסיף לחיסכון כל חודש"
-            optional
-          />
+          <div className="flex flex-col gap-2">
+            <NumberInput
+              label="הפקדה חודשית"
+              value={monthly}
+              onChange={setMonthly}
+              placeholder="0"
+              suffix="₪"
+              helper="כמה אתה מוסיף לחיסכון כל חודש"
+              optional
+            />
+            <div className="flex gap-2">
+              {MONTHLY_PRESETS.map((preset) => (
+                <button
+                  key={preset}
+                  onClick={() => setMonthly(String(preset))}
+                  className={`flex-1 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
+                    monthly === String(preset)
+                      ? 'bg-blue-700 text-white border-blue-700'
+                      : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  {preset} ₪
+                </button>
+              ))}
+            </div>
+          </div>
           <RateSelector
             value={rate}
             onChange={setRate}
@@ -129,6 +154,14 @@ function CompoundInterestForm() {
         </>
       )}
     </div>
+  );
+}
+
+export function EmbeddedCompoundCalculator(props: CompoundInterestFormProps) {
+  return (
+    <Suspense fallback={<div />}>
+      <CompoundInterestForm {...props} />
+    </Suspense>
   );
 }
 
