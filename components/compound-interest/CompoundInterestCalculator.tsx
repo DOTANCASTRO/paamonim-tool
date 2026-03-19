@@ -16,7 +16,7 @@ const INVESTMENT_PRESETS = [
 ];
 
 const PRINCIPAL_PRESETS = [1000, 3000, 5000];
-const MONTHLY_PRESETS = [1000, 3000, 5000];
+const MONTHLY_PRESETS = [100, 500, 1000];
 const YEARS_PRESETS = [5, 10, 20];
 
 interface CompoundInterestFormProps {
@@ -204,7 +204,7 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly, 
             💡 מתוך סך החיסכון שלך, <strong>{formatPercent(interestPercent)}</strong> הגיע מריבית —
             {interestPercent > 50
               ? ' כלומר יותר ממחצית הכסף שלך נוצר בלי שהפקדת כלום. זה הכוח של זמן + ריבית.'
-              : ' כלומר הזמן עבד בשבילך בלי שעשית כלום. ככל שתתחיל מוקדם יותר, ה-% הזה יגדל.'}
+              : ' כלומר הזמן עבד בשבילך. ה-% צפוי לגדול.'}
           </div>
 
           <div className="bg-white rounded-2xl border border-slate-200 p-6">
