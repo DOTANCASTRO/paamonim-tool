@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, Suspense } from 'react';
+import { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import NumberInput from '@/components/shared/NumberInput';
 import RateSelector from '@/components/shared/RateSelector';
@@ -22,9 +22,11 @@ interface CompoundInterestFormProps {
   defaultPrincipal?: string;
   defaultYears?: string;
   defaultMonthly?: string;
+  hidePresets?: boolean;
+  syncMonthly?: string;
 }
 
-function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }: CompoundInterestFormProps = {}) {
+function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly, hidePresets, syncMonthly }: CompoundInterestFormProps = {}) {
   const searchParams = useSearchParams();
   const initialFromUrl = defaultPrincipal ?? searchParams.get('initial') ?? '1000';
   const monthsFromUrl = searchParams.get('months');
@@ -34,6 +36,10 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }
   const [years, setYears] = useState(yearsFromUrl);
   const [monthly, setMonthly] = useState(monthlyFromUrl);
   const [rate, setRate] = useState('3.5');
+
+  useEffect(() => {
+    if (syncMonthly !== undefined) setMonthly(syncMonthly);
+  }, [syncMonthly]);
 
   const result = useMemo(() => {
     const p = parseFloat(principal) || 0;
@@ -81,7 +87,7 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }
                 />
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">שנים</span>
               </div>
-              {YEARS_PRESETS.map((preset) => (
+              {!hidePresets && YEARS_PRESETS.map((preset) => (
                 <button
                   key={preset}
                   onClick={() => setYears(String(preset))}
@@ -111,7 +117,7 @@ function CompoundInterestForm({ defaultPrincipal, defaultYears, defaultMonthly }
                 />
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">₪</span>
               </div>
-              {MONTHLY_PRESETS.map((preset) => (
+              {!hidePresets && MONTHLY_PRESETS.map((preset) => (
                 <button
                   key={preset}
                   onClick={() => setMonthly(String(preset))}

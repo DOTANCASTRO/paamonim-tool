@@ -210,6 +210,12 @@ export default function EventPlannerCalculator() {
                   ? resultA ? String(Math.round(resultA.monthlySavings)) : undefined
                   : monthlySavings
               }
+              syncMonthly={
+                mode === 'A'
+                  ? resultA ? String(Math.round(resultA.monthlySavings)) : undefined
+                  : monthlySavings
+              }
+              hidePresets
             />
           </div>
         )}
