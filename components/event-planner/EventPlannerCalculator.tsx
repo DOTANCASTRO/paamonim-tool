@@ -35,7 +35,7 @@ export default function EventPlannerCalculator() {
     const t = parseFloat(targetAmount) || 0;
     const m = (parseInt(years) || 0) * 12;
     if (mode !== 'A' || t <= 0 || m <= 0) return null;
-    return calcMonthlySavingsNeeded(t, m, 3);
+    return calcMonthlySavingsNeeded(t, m, 3.5);
   }, [mode, targetAmount, years]);
 
   const resultB = useMemo(() => {
@@ -138,19 +138,33 @@ export default function EventPlannerCalculator() {
             💡 אם תחסוך <strong>{formatCurrency(resultA.monthlySavings)}</strong> בחודש, תגיע ל{displayName} שלך בעוד {years} שנים.
           </div>
           {resultA3pct && (
-            <div className="bg-green-50 border border-green-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="flex flex-col gap-1">
-                <p className="text-sm font-semibold text-green-800">עם ריבית דריבית של 3% בשנה</p>
-                <p className="text-sm text-green-700 leading-relaxed">
-                  תצטרך לחסוך רק <strong>{formatCurrency(resultA3pct.monthlySavings)}</strong> בחודש — הריבית עושה את שאר העבודה.
-                </p>
+            <div className="flex flex-col gap-4">
+              <div className="bg-green-50 border border-green-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex flex-col gap-1">
+                  <p className="text-sm font-semibold text-green-800">עם ריבית דריבית של 3.5% בשנה</p>
+                  <p className="text-sm text-green-700 leading-relaxed">
+                    תצטרך לחסוך רק <strong>{formatCurrency(resultA3pct.monthlySavings)}</strong> בחודש — הריבית עושה את שאר העבודה.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowCompound((v) => !v)}
+                  className="shrink-0 bg-green-700 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-green-800 transition-colors text-center"
+                >
+                  {showCompound ? 'סגור ←' : 'חשב ריבית דריבית ←'}
+                </button>
               </div>
-              <button
-                onClick={() => setShowCompound(true)}
-                className="shrink-0 bg-green-700 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-green-800 transition-colors text-center"
-              >
-                חשב ריבית דריבית ←
-              </button>
+              {showCompound && (
+                <div className="bg-white border border-slate-200 rounded-xl p-5">
+                  <EmbeddedCompoundCalculator
+                    defaultPrincipal="0"
+                    defaultYears={years}
+                    defaultMonthly={String(Math.round(resultA3pct.monthlySavings))}
+                    syncMonthly={String(Math.round(resultA3pct.monthlySavings))}
+                    syncYears={years}
+                    hidePresets
+                  />
+                </div>
+              )}
             </div>
           )}
         </>
@@ -185,37 +199,6 @@ export default function EventPlannerCalculator() {
         </>
       )}
 
-      {/* Inline compound interest calculator */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 flex flex-col gap-4">
-        <div className="flex justify-end">
-          <button
-            onClick={() => setShowCompound((v) => !v)}
-            className="shrink-0 bg-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-blue-800 transition-colors text-center"
-          >
-            {showCompound ? 'סגור ←' : 'מחשבון ריבית דריבית ←'}
-          </button>
-        </div>
-        {showCompound && (
-          <div className="border-t border-blue-200 pt-4">
-            <EmbeddedCompoundCalculator
-              defaultPrincipal="0"
-              defaultYears={mode === 'A' ? years : resultB ? String(Math.round(resultB.months / 12)) : undefined}
-              defaultMonthly={
-                mode === 'A'
-                  ? resultA ? String(Math.round(resultA.monthlySavings)) : undefined
-                  : monthlySavings
-              }
-              syncMonthly={
-                mode === 'A'
-                  ? resultA ? String(Math.round(resultA.monthlySavings)) : undefined
-                  : monthlySavings
-              }
-              syncYears={years}
-              hidePresets
-            />
-          </div>
-        )}
-      </div>
     </div>
   );
 }
