@@ -31,6 +31,13 @@ export default function EventPlannerCalculator() {
     return calcMonthlySavingsNeeded(t, m, 0);
   }, [mode, targetAmount, years]);
 
+  const resultA3pct = useMemo(() => {
+    const t = parseFloat(targetAmount) || 0;
+    const m = (parseInt(years) || 0) * 12;
+    if (mode !== 'A' || t <= 0 || m <= 0) return null;
+    return calcMonthlySavingsNeeded(t, m, 3);
+  }, [mode, targetAmount, years]);
+
   const resultB = useMemo(() => {
     const t = parseFloat(targetAmount) || 0;
     const s = parseFloat(monthlySavings) || 0;
@@ -130,6 +137,22 @@ export default function EventPlannerCalculator() {
           <div className="bg-orange-50 border border-orange-100 rounded-xl p-4 text-sm text-orange-800 leading-relaxed">
             💡 אם תחסוך <strong>{formatCurrency(resultA.monthlySavings)}</strong> בחודש, תגיע ל{displayName} שלך בעוד {years} שנים.
           </div>
+          {resultA3pct && (
+            <div className="bg-green-50 border border-green-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex flex-col gap-1">
+                <p className="text-sm font-semibold text-green-800">עם ריבית דריבית של 3% בשנה</p>
+                <p className="text-sm text-green-700 leading-relaxed">
+                  תצטרך לחסוך רק <strong>{formatCurrency(resultA3pct.monthlySavings)}</strong> בחודש — הריבית עושה את שאר העבודה.
+                </p>
+              </div>
+              <button
+                onClick={() => setShowCompound(true)}
+                className="shrink-0 bg-green-700 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-green-800 transition-colors text-center"
+              >
+                חשב ריבית דריבית ←
+              </button>
+            </div>
+          )}
         </>
       )}
 
